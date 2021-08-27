@@ -1,9 +1,12 @@
-package py.una.server.tcp;
+package py.una.cliente.udp;
 
 import java.io.*;
 import java.net.*;
+import py.una.entity.Cama;
 
 public class TCPClient_timeout {
+
+    private static Integer SERVER_PORT = 4444;
 
     public static void main(String[] args) throws Exception {
 
@@ -17,7 +20,7 @@ public class TCPClient_timeout {
 
         try {
 
-            SocketAddress sockaddr = new InetSocketAddress("localhost", 4444);
+            SocketAddress sockaddr = new InetSocketAddress("localhost", SERVER_PORT);
             //SocketAddress sockaddr = new InetSocketAddress("200.10.229.161", 8080);
             kkSocket = new Socket();
 
@@ -49,13 +52,49 @@ public class TCPClient_timeout {
 
         try {
             while ((fromServer = in.readLine()) != null) {
+
                 System.out.println("Servidor: " + fromServer);
+
                 if (fromServer.equals("Bye")) {
                     break;
                 }
+
                 fromUser = stdIn.readLine();
                 if (fromUser != null) {
                     System.out.println("Cliente: " + fromUser);
+
+                    if ("1".equals(fromUser)) {
+                        // ver_estado
+                        
+                        // enviar consulta
+                        
+                        // imprimir respuesta
+
+                    } else if ("2".equals(fromUser)) {
+                        // crear_cama
+                        String id, estado, hospital;
+                        System.out.println("Ingrese los sig. datos de la nueva cama");
+                        System.out.println("Ingrese el ID:");
+                        id = stdIn.readLine();
+                        System.out.println("Ingrese el estado:");
+                        estado = stdIn.readLine();
+                        System.out.println("Ingrese el hospital al que pertence:");
+                        hospital = stdIn.readLine();
+                        Cama cama = new Cama(id, estado, hospital);
+                        
+
+                    } else if ("3".equals(fromUser)) {
+                        // eliminar_cama
+
+                    } else if ("4".equals(fromUser)) {
+                        // ocupar_cama
+
+                    } else if ("5".equals(fromUser)) {
+                        // desocupar_cama
+
+                    } else {
+                        System.out.println("Comando desconocido");
+                    }
 
                     //escribimos al servidor
                     out.println(fromUser);
@@ -70,4 +109,6 @@ public class TCPClient_timeout {
         stdIn.close();
         kkSocket.close();
     }
+
+    //private static void ()
 }

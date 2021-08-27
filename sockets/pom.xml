@@ -5,7 +5,7 @@
 
 
     <groupId>py.una.pol.sd</groupId>
-    <artifactId>socket-clientes</artifactId>
+    <artifactId>sockets</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>
@@ -42,5 +42,6 @@
             </plugin>
         </plugins>
     </build>
-    <name>socket-clientes</name>
+    <name>sockets</name>
+    <description>tp_dritri de sockets con java</description>
 </project>

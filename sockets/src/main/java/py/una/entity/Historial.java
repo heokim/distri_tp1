@@ -8,6 +8,7 @@ public class Historial {
     String origenIP;
     String destinoIP;
     String tipoOperacion;
+    // ver_estado, crear_cama, eliminar_cama, ocupar_cama, desocupar_cama
 
     public Date getFechaHora() {
         return fechaHora;

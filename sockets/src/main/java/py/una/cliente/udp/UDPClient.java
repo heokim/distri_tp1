@@ -1,4 +1,4 @@
-package py.una.server.udp;
+package py.una.cliente.udp;
 
 import java.io.*;
 import java.net.*;
