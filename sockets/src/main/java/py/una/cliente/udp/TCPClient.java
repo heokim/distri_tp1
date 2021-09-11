@@ -8,7 +8,7 @@ import py.una.entity.Cama;
 public class TCPClient {
 
     public static void main(String[] args) throws IOException, Exception {
-
+        // Texto plano
         Socket unSocket = null;
         PrintWriter out = null;
         BufferedReader in = null;
