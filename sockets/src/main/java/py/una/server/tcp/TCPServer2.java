@@ -4,9 +4,6 @@ import java.net.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import py.una.entity.Cama;
 import py.una.entity.Historial;
 
@@ -70,6 +67,7 @@ public class TCPServer2 {
                         clientSocket.getInputStream())
         );
 
+        out.println("Conexcion Exitosa. Bienvenido!");
         String inputLine, outputLine;
         // Servidor escuchando
         while (true) {
@@ -95,46 +93,4 @@ public class TCPServer2 {
         serverSocket.close();
     }
 
-    private static void procesarMensaje(String msg) throws ParseException {
-        JSONParser parser = new JSONParser();
-
-        Object obj = parser.parse(msg.trim());
-        JSONObject jsonObject = (JSONObject) obj;
-
-        Integer tipo_operecion;
-
-        tipo_operecion = (Integer) jsonObject.get("tipo_operacion");
-    }
-
-    /**
-     * Acciones requeridas
-     *
-     * Ver el estado actual de todos los hospitales.
-     *
-     * Crear Cama UTI
-     *
-     * Eliminar Cama UTI
-     *
-     * Ocupar Cama UTI
-     *
-     * Desocupar Cama UTI
-     */
-    /**
-     * Formato de comandos
-     *
-     *
-     */
-    /**
-     * Formato de retorno de mensaje del Servidor al Cliente
-     *
-     * estado = 0, -1 , > 0 codigo personalizado
-     *
-     * mensaje = ok(si no tiene error), "mensaje de error" (si tiene error)
-     *
-     * tipo_operacion =
-     *
-     * 1: ver_estado, 2: crear_cama , 3: eliminar_cama, 4:ocupar_cama, 5:
-     * desocupar_cama ,Otros a considerar
-     *
-     */
 }

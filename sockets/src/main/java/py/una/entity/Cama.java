@@ -1,7 +1,6 @@
 package py.una.entity;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import org.json.JSONObject;
 
 public class Cama {
 
@@ -29,14 +28,12 @@ public class Cama {
      * @throws Exception error al convertir el json
      */
     public Cama(String JSONString) throws Exception {
-        JSONParser parser = new JSONParser();
+        JSONObject jsonObject = new JSONObject(JSONString);
 
-        Object obj = parser.parse(JSONString.trim());
-        JSONObject jsonObject = (JSONObject) obj;
+        this.id = jsonObject.getString("id");
+        this.estado = jsonObject.getString("estado");
+        this.hospital = jsonObject.getString("hospital");
 
-        this.id = (String) jsonObject.get("id");
-        this.estado = (String) jsonObject.get("estado");
-        this.hospital = (String) jsonObject.get("hospital");
     }
 
     // <editor-fold defaultstate="collapsed" desc="Getters & Setters">
@@ -77,6 +74,12 @@ public class Cama {
         obj.put("estado", this.estado);
         obj.put("hospital", this.hospital);
 
-        return obj.toJSONString();
+        return obj.toString();
     }
+    /*
+    @Override
+    public String toString() {
+        return "{" + "\"id\":\"" + id + "\", \"estado\":\"" + estado + "\", \"hospital\":\"" + hospital + "\"}";
+    }
+     */
 }

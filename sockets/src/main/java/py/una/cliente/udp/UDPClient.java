@@ -3,9 +3,6 @@ package py.una.cliente.udp;
 import java.io.*;
 import java.net.*;
 
-import py.una.entidad.Persona;
-import py.una.entidad.PersonaJSON;
-
 class UDPClient {
 
     public static void main(String a[]) throws Exception {
@@ -46,12 +43,10 @@ class UDPClient {
             System.out.print("Ingrese el apellido: ");
             String apellido = inFromUser.readLine();
 
-            Persona p = new Persona(cedula, nombre, apellido);
-
-            String datoPaquete = PersonaJSON.objetoString(p);
-            sendData = datoPaquete.getBytes();
-
-            System.out.println("Enviar " + datoPaquete + " al servidor. (" + sendData.length + " bytes)");
+            //Persona p = new Persona(cedula, nombre, apellido);
+            //String datoPaquete = PersonaJSON.objetoString(p);
+            //sendData = datoPaquete.getBytes();
+            //System.out.println("Enviar " + datoPaquete + " al servidor. (" + sendData.length + " bytes)");
             DatagramPacket sendPacket
                     = new DatagramPacket(sendData, sendData.length, IPAddress, puertoServidor);
 
@@ -70,7 +65,7 @@ class UDPClient {
                 clientSocket.receive(receivePacket);
 
                 String respuesta = new String(receivePacket.getData());
-                Persona presp = PersonaJSON.stringObjeto(respuesta.trim());
+                //Persona presp = PersonaJSON.stringObjeto(respuesta.trim());
 
                 InetAddress returnIPAddress = receivePacket.getAddress();
                 int port = receivePacket.getPort();
@@ -78,10 +73,9 @@ class UDPClient {
                 System.out.println("Respuesta desde =  " + returnIPAddress + ":" + port);
                 System.out.println("Asignaturas: ");
 
-                for (String tmp : presp.getAsignaturas()) {
-                    System.out.println(" -> " + tmp);
-                }
-
+                //for (String tmp : presp.getAsignaturas()) {
+                //   System.out.println(" -> " + tmp);
+                //}
             } catch (SocketTimeoutException ste) {
 
                 System.out.println("TimeOut: El paquete udp se asume perdido.");
